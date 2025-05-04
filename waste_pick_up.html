@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request Waste Pickup - EcoConnect</title>
+    <link rel="stylesheet" href="stylesheet_style.css" />
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+      defer
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="logo1.jpeg" alt="EcoConnect Logo" />
+          <h1>EcoConnect</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="dashboard.html">My Dashboard</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="user-actions">
+          <a href="login.html" class="btn btn-secondary">Login</a>
+          <a href="register.html" class="btn btn-primary">Register</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-header">
+      <div class="container">
+        <h1>Request Waste Pickup</h1>
+        <p>Fill out the form below to schedule a waste collection service</p>
+      </div>
+    </section>
+
+    <section class="request-form">
+      <div class="container">
+        <div class="form-container">
+          <form action="process_request.php" method="POST" id="pickupForm">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" required />
+            </div>
+
+            <div class="form-group">
+              <label for="wasteType">Type of Waste</label>
+              <select id="wasteType" name="wasteType" required>
+                <option value="">Select Waste Type</option>
+                <option value="electronic">Electronic Waste</option>
+                <option value="paper">Paper Waste</option>
+                <option value="metal">Metal Waste</option>
+                <option value="organic">Organic Waste</option>
+                <option value="plastic">Plastic Waste</option>
+                <option value="glass">Glass Waste</option>
+                <option value="mixed">Mixed Waste</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="wasteAmount">Approximate Amount</label>
+              <select id="wasteAmount" name="wasteAmount" required>
+                <option value="">Select Amount</option>
+                <option value="small">Small (Fits in 1-2 bags)</option>
+                <option value="medium">Medium (3-5 bags)</option>
+                <option value="large">Large (Truck load)</option>
+                <option value="custom">Custom (Specify below)</option>
+              </select>
+            </div>
+
+            <div
+              class="form-group"
+              id="customAmountContainer"
+              style="display: none"
+            >
+              <label for="customAmount">Specify Amount</label>
+              <textarea
+                id="customAmount"
+                name="customAmount"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="pickupDate">Preferred Pickup Date</label>
+              <input type="date" id="pickupDate" name="pickupDate" required />
+            </div>
+
+            <div class="form-group">
+              <label for="pickupTime">Preferred Pickup Time</label>
+              <select id="pickupTime" name="pickupTime" required>
+                <option value="">Select Time</option>
+                <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
+                <option value="afternoon">
+                  Afternoon (12:00 PM - 4:00 PM)
+                </option>
+                <option value="evening">Evening (4:00 PM - 8:00 PM)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="additionalInfo">Additional Information</label>
+              <textarea
+                id="additionalInfo"
+                name="additionalInfo"
+                rows="4"
+              ></textarea>
+            </div>
+
+            <div class="form-group map-container">
+              <label>Your Location (Based on GPS)</label>
+              <div id="map"></div>
+              <p class="note">
+                Note: We use your GPS to approximately determine your location.
+                You can adjust the pin if needed.
+              </p>
+              <input type="hidden" id="latitude" name="latitude" />
+              <input type="hidden" id="longitude" name="longitude" />
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                Submit Request
+              </button>
+              <button type="reset" class="btn btn-secondary">Clear Form</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-info">
+          <div class="info-box">
+            <h3>What Happens Next?</h3>
+            <ol>
+              <li>
+                You'll receive an immediate confirmation email with your request
+                details.
+              </li>
+              <li>
+                Our system will assign the nearest collection team to your
+                location.
+              </li>
+              <li>
+                You'll receive a notification with the scheduled pickup time
+                (within approximately 2 hours).
+              </li>
+              <li>
+                Our team will arrive at the scheduled time to collect your
+                waste.
+              </li>
+              <li>
+                You'll receive a confirmation once the collection is complete.
+              </li>
+            </ol>
+          </div>
+
+          <div class="info-box">
+            <h3>Need Help?</h3>
+            <p>Contact our customer support:</p>
+            <p>Email: support@ecoconnect.com</p>
+            <p>Phone: +123-456-7890</p>
+            <title>Contact Us - Baby Essentials</title>
+            <link
+            href="https://fonts.googleapis.com/css2?family=Arial&family=Open+Sans:wght@400;700&display=swap"
+            rel="styleshee
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="logo1.jpeg" alt="EcoConnect Logo" />
+            <h3>EcoConnect</h3>
+            <p>Efficient waste management solutions</p>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="request-pickup.html">Request Pickup</a></li>
+              <li><a href="dashboard.html">Dashboard</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p>Email: uwajenezagiselle@gmail.com</p>
+            <p>Phone: 0780777252</p>
+            <p>Address: 123 Green Street, Eco City</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 EcoConnect. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/request-form.js"></script>
+  </body>
+</html>
